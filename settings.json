@@ -1,0 +1,10 @@
+{
+    "selectedScreenSize": [
+        800,
+        600
+    ],
+    "jsonFormattingIndent": 2,
+    "mainMenuBackgroundColor": "teal",
+    "mainMenuButtonFont": "Medium Arial Font",
+    "mainMenuButtonColor": "black"
+}
