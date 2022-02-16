@@ -24,11 +24,22 @@ class MainMenu:
             constants.FONTS["Medium Arial Font"],
         )
 
+        self.quit_button = Button(
+            self.window.window,
+            400,
+            400,
+            "Quit Game",
+            (255, 255, 255),
+            (0, 0, 0),
+            constants.FONTS["Medium Arial Font"],
+        )
+
     def draw(self):
         background_color_name = self.settings.get("mainMenuBackgroundColor")
         background_color = constants.COLORS[background_color_name]
         self.window.fill(background_color)
         self.start_button.draw()
+        self.quit_button.draw()
         pygame.display.update()
 
     def start(self):
