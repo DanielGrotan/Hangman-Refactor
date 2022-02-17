@@ -14,6 +14,7 @@ class Settings:
 
     def modify(self, key: str, new_value: Any):
         self.settings[key] = new_value
+        self.save()
 
     def save(self):
         with open(self.settings_path, "w") as settings_file:

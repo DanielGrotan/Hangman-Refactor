@@ -1,12 +1,12 @@
 {
-    "selectedScreenSize": [
-        800,
-        600
-    ],
-    "jsonFormattingIndent": 2,
-    "mainMenuBackgroundColor": "teal",
-    "mainMenuButtonFontSize": 100,
-    "mainMenuButtonFont": "comicsans",
-    "mainMenuButtonColor": "black",
-    "mainMenuButtonTextColor": "white"
+  "selectedScreenSize": [
+    1536,
+    864
+  ],
+  "jsonFormattingIndent": 2,
+  "mainMenuBackgroundColor": "teal",
+  "mainMenuButtonFontSize": 100,
+  "mainMenuButtonFont": "comicsans",
+  "mainMenuButtonColor": "black",
+  "mainMenuButtonTextColor": "white"
 }
