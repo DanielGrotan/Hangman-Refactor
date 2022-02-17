@@ -5,6 +5,8 @@
     ],
     "jsonFormattingIndent": 2,
     "mainMenuBackgroundColor": "teal",
-    "mainMenuButtonFont": "Medium Arial Font",
-    "mainMenuButtonColor": "black"
+    "mainMenuButtonFontSize": 100,
+    "mainMenuButtonFont": "comicsans",
+    "mainMenuButtonColor": "black",
+    "mainMenuButtonTextColor": "white"
 }

@@ -1,1 +1,1 @@
-Rectangle = tuple[int, int, int, int]
+Color = tuple[int, int, int]

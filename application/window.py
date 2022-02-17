@@ -5,6 +5,7 @@ from .settings import Settings
 
 class ApplicationWindow:
     def __init__(self, settings: Settings, application_name: str):
+        self.settings = settings
         self.rename(application_name)
         self.resize(*settings.get("selectedScreenSize"))
 
@@ -14,7 +15,11 @@ class ApplicationWindow:
 
     def resize(self, new_width: int, new_height: int):
         self.screen_width, self.screen_height = new_width, new_height
-        self.window = pygame.display.set_mode((self.screen_width, self.screen_height))
+        self.window = pygame.display.set_mode(
+            (self.screen_width, self.screen_height), pygame.RESIZABLE
+        )
+
+        self.settings.modify("selectedScreenSize", [new_width, new_height])
 
         self.blit = self.window.blit
         self.fill = self.window.fill
