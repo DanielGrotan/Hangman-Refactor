@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 import pygame
-import utils
+import util
 from constants import Color, Coordinate
 from pygame import Surface
 
@@ -23,7 +23,6 @@ class Button:
     font_name: str = "comicsans"
 
     def __post_init__(self):
-        print("Hello")
         self.hovering = False
 
         self.render(self.width, self.height, self.x, self.y)
@@ -45,7 +44,7 @@ class Button:
             return
 
         maximum_width, maximum_height = int(width * 0.9), int(height * 0.9)
-        font_size = utils.get_dynanimc_font_size(
+        font_size = util.get_dynanimc_font_size(
             self.font_name, self.text, maximum_width, maximum_height
         )
 
