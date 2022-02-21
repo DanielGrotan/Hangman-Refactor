@@ -30,10 +30,10 @@ class Options(State):
             400,
             self.game.monitor_width,
             "Enter Screen Width",
-            (0, 0, 255),
-            (0, 255, 0),
+            constants.BLUE,
+            constants.GREEN,
             constants.WHITE,
-            (85, 85, 85),
+            constants.GREY,
             screen_width,
         )
 
@@ -59,10 +59,10 @@ class Options(State):
             400,
             self.game.monitor_height,
             "Enter Screen Height",
-            (0, 0, 255),
-            (0, 255, 0),
+            constants.BLUE,
+            constants.GREEN,
             constants.WHITE,
-            (85, 85, 85),
+            constants.GREY,
             screen_height,
         )
 
