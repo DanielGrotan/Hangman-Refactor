@@ -121,7 +121,7 @@ class Hangman(State):
     def render_game_over_text(self):
         victory_text = "You guessed every letter of the word correctly!"
         font_size = util.get_dynanimc_font_size(
-            "comicsans", victory_text, self.screen_width // 3, self.screen_height // 6
+            "comicsans", victory_text, self.screen_width // 2, self.screen_height // 3
         )
         font = pygame.font.SysFont("comicsans", font_size)
 
@@ -130,9 +130,9 @@ class Hangman(State):
             center=(self.screen_width // 2, self.screen_height // 2)
         )
 
-        loss_text = f"You didn't guess every letter of the word correctly! The word was: {self.word}"
+        loss_text = f"You ran out of lives! The word was: {self.word}"
         font_size = util.get_dynanimc_font_size(
-            "comicsans", loss_text, self.screen_width // 3, self.screen_height // 6
+            "comicsans", loss_text, self.screen_width // 2, self.screen_height // 3
         )
         font = pygame.font.SysFont("comicsans", font_size)
 
@@ -251,3 +251,11 @@ class Hangman(State):
         if self.won or self.lost:
             self.restart_button.draw(surface)
             self.main_menu_button.draw(surface)
+
+    def enter_state(self):
+        super().enter_state()
+        pygame.display.set_caption("Hangman: Game")
+
+    def exit_state(self):
+        super().exit_state()
+        pygame.display.set_caption("Hangman: Main Menu")
