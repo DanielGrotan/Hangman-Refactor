@@ -34,6 +34,7 @@ class Game:
             "mouse_clicked": False,
             "keys_pressed": [],
             "enter_pressed": False,
+            "escape_pressed": False,
         }
         self.clock = pygame.time.Clock()
         self.FPS = 60
@@ -108,6 +109,8 @@ class Game:
                         self.actions["keys_pressed"].append(event.key)
                     elif event.key == pygame.K_RETURN:
                         self.actions["enter_pressed"] = True
+                    elif event.key == pygame.K_ESCAPE:
+                        self.actions["escape_pressed"] = True
                     else:
                         self.actions["keys_pressed"].append(event.unicode)
 
@@ -117,6 +120,7 @@ class Game:
             "mouse_clicked": False,
             "keys_pressed": [],
             "enter_pressed": False,
+            "escape_pressed": False
         }
 
     def quit_game(self):

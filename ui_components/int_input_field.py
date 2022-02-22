@@ -96,6 +96,7 @@ class IntInputField:
                     self.text = self.text[:-1]
                 if letter in {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}:
                     self.text += letter
+                    self.value = min(self.max_int, max(self.min_int, int(self.text)))
 
         if self.text:
             self.text_surface, self.text_rect = self.render_text()

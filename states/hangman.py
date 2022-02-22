@@ -6,12 +6,17 @@ import pygame
 import util
 from ui_components.button import Button
 
+from .game_settings import GameSettings
 from .state import State
 
 
 class Hangman(State):
     def __init__(self, game):
         super().__init__(game)
+        self.max_lives = 26
+        self.min_letters = 2
+        self.max_letters = 10
+
         self.setup()
         self.load_images()
 
@@ -33,10 +38,10 @@ class Hangman(State):
             self.game.screen_height,
         )
 
-        self.word = util.get_random_word(1, math.inf)
+        self.word = util.get_random_word(self.min_letters, self.max_letters)
         self.correct_letters = set(self.word)
 
-        self.lives = max(7, min(26 - len(self.correct_letters), 10))
+        self.lives = max(7, min(26 - len(self.correct_letters), self.max_lives))
         self.lives_per_image = self.lives // 7
 
         self.current_image = 0
@@ -197,6 +202,9 @@ class Hangman(State):
         return correct
 
     def update(self, delta_time, actions):
+        if actions["escape_pressed"]:
+            game_settings = GameSettings(self.game)
+
         if actions["mouse_moved"]:
             mouse_pos = pygame.mouse.get_pos()
             self.restart_button.check_hover(mouse_pos)
