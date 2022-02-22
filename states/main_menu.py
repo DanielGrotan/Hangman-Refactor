@@ -2,6 +2,7 @@ import constants
 import pygame
 from ui_components.button import Button
 
+from .hangman import Hangman
 from .options import Options
 from .state import State
 
@@ -70,7 +71,8 @@ class MainMenu(State):
                 button.check_hover(mouse_pos)
         if actions["mouse_clicked"]:
             if self.start_button.check_press():
-                pass
+                hangman_state = Hangman(self.game)
+                hangman_state.enter_state()
             elif self.options_button.check_press():
                 options_state = Options(self.game)
                 options_state.enter_state()

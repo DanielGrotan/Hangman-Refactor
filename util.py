@@ -1,3 +1,7 @@
+import json
+import os
+import random
+
 import pygame
 
 import constants
@@ -19,3 +23,17 @@ def get_dynanimc_font_size(
             return current_font_size - 1
 
         current_font_size += 1
+
+
+def get_random_word(lower_bound: int, upper_bound: int):
+    lower_bound = max(2, lower_bound)
+
+    with open(os.path.join(os.path.dirname(__file__), "words.json")) as words_file:
+        words = list(
+            filter(
+                lambda word: lower_bound <= len(word) <= upper_bound,
+                json.load(words_file),
+            )
+        )
+
+        return random.choice(words)

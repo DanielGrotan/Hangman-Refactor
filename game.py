@@ -1,10 +1,10 @@
 import json
+import os
 import sys
 
 import pygame
 
 from states.main_menu import MainMenu
-from states.options import Options
 from states.state import State
 
 
@@ -17,6 +17,8 @@ class Game:
             monitor_info.current_w,
             monitor_info.current_h,
         )
+
+        self.settings_path = os.path.dirname(__file__) + "/settings.json"
 
         self.load_settings()
         flag = pygame.FULLSCREEN if self.settings["isFullscreen"] else pygame.RESIZABLE
@@ -39,7 +41,7 @@ class Game:
         self.load_states()
 
     def load_settings(self):
-        with open("settings.json") as settings_file:
+        with open(self.settings_path) as settings_file:
             self.settings = json.load(settings_file)
 
         if self.settings["isFullscreen"]:
@@ -54,7 +56,7 @@ class Game:
             self.screen_height = min(self.settings["screenHeight"], self.monitor_height)
 
     def save_settings(self):
-        with open("settings.json", "w") as settings_file:
+        with open(self.settings_path, "w") as settings_file:
             json.dump(self.settings, settings_file)
 
     def load_states(self):
@@ -74,8 +76,8 @@ class Game:
                 self.monitor_height,
             )
         else:
-            self.screen_width = min(new_width, self.monitor_width)
-            self.screen_height = min(new_height, self.monitor_height)
+            self.screen_width = max(400, min(new_width, self.monitor_width))
+            self.screen_height = max(400, min(new_height, self.monitor_height))
 
         flag = pygame.FULLSCREEN if fullscreen else pygame.RESIZABLE
 
@@ -91,21 +93,23 @@ class Game:
 
     def check_events(self):
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.quit_game()
-            elif event.type == pygame.MOUSEMOTION:
-                self.actions["mouse_moved"] = True
-            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                self.actions["mouse_clicked"] = True
-            elif event.type == pygame.VIDEORESIZE:
-                self.resize(event.w, event.h)
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_BACKSPACE:
-                    self.actions["keys_pressed"].append(event.key)
-                elif event.key == pygame.K_RETURN:
-                    self.actions["enter_pressed"] = True
-                else:
-                    self.actions["keys_pressed"].append(event.unicode)
+            match event.type:
+                case pygame.QUIT:
+                    self.quit_game()
+                case pygame.MOUSEMOTION:
+                    self.actions["mouse_moved"] = True
+                case pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        self.actions["mouse_clicked"] = True
+                case pygame.VIDEORESIZE:
+                    self.resize(event.w, event.h)
+                case pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        self.actions["keys_pressed"].append(event.key)
+                    elif event.key == pygame.K_RETURN:
+                        self.actions["enter_pressed"] = True
+                    else:
+                        self.actions["keys_pressed"].append(event.unicode)
 
     def reset_keys(self):
         self.actions = {
