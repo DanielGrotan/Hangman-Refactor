@@ -191,7 +191,7 @@ class Options(State):
             if self.fullscreen_button.check_press():
                 self.screen_width_field.set_value(self.game.monitor_width)
                 self.screen_height_field.set_value(self.game.monitor_height)
-            if self.apply_button.check_press():
+            elif self.apply_button.check_press():
                 screen_width_value = self.screen_width_field.get_value()
                 screen_height_value = self.screen_height_field.get_value()
 

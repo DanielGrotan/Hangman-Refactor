@@ -26,7 +26,7 @@ class Hangman(State):
         for image_index in range(7):
             image = pygame.image.load(
                 os.path.join(base_path, f"hangman{image_index}.png")
-            )
+            ).convert_alpha()
             image = pygame.transform.scale(
                 image, (self.screen_width // 3, self.screen_height // 3)
             )
@@ -155,7 +155,7 @@ class Hangman(State):
             self.screen_height // 6 * 4,
             button_width,
             button_height,
-            "Restart",
+            "Play Again",
             constants.BLACK,
             constants.GREY,
             constants.WHITE,
